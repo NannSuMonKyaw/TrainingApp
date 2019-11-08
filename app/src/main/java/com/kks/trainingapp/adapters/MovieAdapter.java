@@ -20,6 +20,8 @@ import com.kks.trainingapp.common.BaseAdapter;
 import com.kks.trainingapp.custom_control.MyanTextView;
 import com.kks.trainingapp.model.MovieDetailsInfoModel;
 import com.kks.trainingapp.model.MovieInfoModel;
+import com.yayandroid.parallaxrecyclerview.ParallaxRecyclerView;
+import com.yayandroid.parallaxrecyclerview.ParallaxViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +57,7 @@ public class MovieAdapter extends BaseAdapter  {
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends ParallaxViewHolder {
 
         @BindView(R.id.iv_movie_poster)
         ImageView ivMoviePoster;
@@ -66,6 +68,13 @@ public class MovieAdapter extends BaseAdapter  {
         private MovieInfoModel movieInfoModel;
 
 
+        private Context context;
+
+
+        @Override
+        public int getParallaxImageId() {
+            return R.id.iv_movie_poster;
+        }
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

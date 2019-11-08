@@ -1,7 +1,5 @@
 package com.kks.trainingapp.activities;
 
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -69,6 +67,7 @@ public class DetailsActivity extends BaseActivity implements MovieDetailsView {
     @Override
     protected void setUpContents(Bundle savedInstanceState) {
         setupToolbar(true);
+        setupToolbarText("Movie");
         init();
 
     }

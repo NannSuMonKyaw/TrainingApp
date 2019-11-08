@@ -85,4 +85,7 @@ dependencies {
     implementation 'androidx.browser:browser:1.0.0'
 
 
+    // Paralax Recycler
+    implementation 'com.yayandroid:ParallaxRecyclerView:1.1'
+
 }

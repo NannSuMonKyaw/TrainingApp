@@ -3,6 +3,7 @@ package com.kks.trainingapp.activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -91,8 +92,9 @@ public class MainActivity extends BaseActivity implements MainView, SwipeRefresh
         });
 
         recyclerMovie.setHasFixedSize(true);
-        recyclerMovie.setLayoutManager(new GridLayoutManager(this,3));
-        recyclerMovie.addItemDecoration(new ItemOffsetDecoration(3));
+        recyclerMovie.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+//        recyclerMovie.setLayoutManager(new GridLayoutManager(this,3));
+//        recyclerMovie.addItemDecoration(new ItemOffsetDecoration(3));
         recyclerMovie.setAdapter(mAdapter);
         recyclerMovie.addOnScrollListener(mSmartScrollListener);
 

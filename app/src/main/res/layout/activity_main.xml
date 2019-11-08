@@ -25,11 +25,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.yayandroid.parallaxrecyclerview.ParallaxRecyclerView
                 android:id="@+id/recycler_movie"
-                android:background="@color/color_app_background"
+                android:background="@color/colorBlack"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
