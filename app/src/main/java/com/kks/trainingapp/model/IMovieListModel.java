@@ -10,4 +10,5 @@ import io.reactivex.Observable;
 public interface IMovieListModel {
 
     Observable<MovieListModel> getNowShowingMoviesFromApi(ServiceHelper.ApiService service, int page);
+    Observable<MovieListModel> getSimilarVideosFromApi(ServiceHelper.ApiService service,int movieId,int page);
 }

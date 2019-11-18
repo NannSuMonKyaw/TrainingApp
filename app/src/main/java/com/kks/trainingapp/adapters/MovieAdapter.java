@@ -33,6 +33,7 @@ import static com.kks.trainingapp.util.AppConstant.BASE_IMG_URL;
  **/
 public class MovieAdapter extends BaseAdapter  {
 
+
     private Context context;
     @Override
     protected RecyclerView.ViewHolder onCreateCustomViewHolder(ViewGroup parent, int viewType) {

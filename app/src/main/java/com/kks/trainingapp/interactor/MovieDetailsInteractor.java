@@ -16,6 +16,7 @@ import io.reactivex.Observable;
 public class MovieDetailsInteractor {
     private ServiceHelper.ApiService mService;
     private IMovieDetailsInfoModel movieDetailsModel;
+    private MovieListModel movieListModel;
 
     public MovieDetailsInteractor(ServiceHelper.ApiService service) {
         this.mService = service;
@@ -26,4 +27,6 @@ public class MovieDetailsInteractor {
         return this.movieDetailsModel.getMovieDetailsFromApi(mService,movie_id);
 
     }
+
+
 }

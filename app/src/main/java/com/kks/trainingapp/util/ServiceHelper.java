@@ -3,9 +3,11 @@ package com.kks.trainingapp.util;
 import android.content.Context;
 
 
+import com.kks.trainingapp.model.GetVideoResultModel;
 import com.kks.trainingapp.model.LoginRequestBody;
 import com.kks.trainingapp.model.MovieDetailsInfoModel;
 import com.kks.trainingapp.model.MovieListModel;
+import com.kks.trainingapp.model.MovieTrailerModel;
 import com.kks.trainingapp.model.ProfileInfoModel;
 import com.kks.trainingapp.model.RequestTokenBody;
 
@@ -139,6 +141,17 @@ public class ServiceHelper {
         @GET("movie/{movie_id}")
         Observable<MovieDetailsInfoModel> getDetails(@Path("movie_id") int movieId,
                                                      @Query("api_key") String apiKey);
+
+        @GET("movie/{movie_id}/videos")
+        Observable<GetVideoResultModel> getVideo(@Path("movie_id")int movieId,
+                                                 @Query("api_key") String apiKey );
+
+        @GET("movie/{movie_id}/similar")
+        Observable<MovieListModel> getSimilarVideos(@Path("movie_id")int movieId,
+                                                        @Query("api_key") String apiKey,
+                                                        @Query("page") int page);
+
+
 
     }
 

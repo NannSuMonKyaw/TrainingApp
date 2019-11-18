@@ -1,5 +1,6 @@
 package com.kks.trainingapp.interactor;
 
+import com.kks.trainingapp.model.GetVideoResultModel;
 import com.kks.trainingapp.model.IMovieListModel;
 import com.kks.trainingapp.model.MovieListModel;
 import com.kks.trainingapp.model.MovieListModelImpl;
@@ -27,5 +28,10 @@ public class MovieInteractor {
     public Observable<MovieListModel> getNowShowingMovieList(int page) {
         return this.movieListModel.getNowShowingMoviesFromApi(mService,page);
 
+    }
+
+
+    public Observable<MovieListModel> getSimilarVideosById(int movieId,int page){
+        return this.movieListModel.getSimilarVideosFromApi(mService,movieId,page);
     }
 }

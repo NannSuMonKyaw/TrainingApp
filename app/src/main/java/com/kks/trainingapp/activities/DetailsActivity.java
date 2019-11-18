@@ -3,24 +3,35 @@ package com.kks.trainingapp.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.kks.trainingapp.R;
+import com.kks.trainingapp.adapters.MovieAdapter;
 import com.kks.trainingapp.common.BaseActivity;
+import com.kks.trainingapp.common.ItemOffsetDecoration;
 import com.kks.trainingapp.custom_control.MyanProgressDialog;
 import com.kks.trainingapp.interactor.MovieDetailsInteractor;
 import com.kks.trainingapp.interactor.MovieInteractor;
 import com.kks.trainingapp.model.MovieDetailsInfoModel;
+import com.kks.trainingapp.model.MovieInfoModel;
+import com.kks.trainingapp.model.MovieListModel;
 import com.kks.trainingapp.mvp.presenter.MainPresenterImpl;
 import com.kks.trainingapp.mvp.presenter.MovieDetailPresenterImpl;
 import com.kks.trainingapp.mvp.presenter.MovieDetailsPresenter;
 import com.kks.trainingapp.mvp.view.MovieDetailsView;
 import com.kks.trainingapp.util.ServiceHelper;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -46,13 +57,18 @@ public class DetailsActivity extends BaseActivity implements MovieDetailsView {
 
     @BindView(R.id.iv_movie_poster)
     ImageView ivMoviePoster;
+    @BindView(R.id.btn_play)
+    Button btnPlay;
+    @BindView(R.id.similar_movie_recycler_view)
+    RecyclerView recyclerMovie;
 
-    MyanProgressDialog mDialog;
-    MovieDetailsPresenter mPresenter;
-
-     private static int mmovieId;
-    MovieDetailsInfoModel movieDetailsInfoModel;
+    private MyanProgressDialog mDialog;
+    private MovieDetailsPresenter mPresenter;
+    private static int mmovieId;
+    private MovieAdapter mAdapter;
+    private  MovieDetailsInfoModel movieDetailsInfoModel;
     private ServiceHelper.ApiService mService;
+
     public static Intent getDetailsActivityIntent(Context context,int movieId) {
 
         Intent intent = new Intent(context, DetailsActivity.class);
@@ -80,11 +96,23 @@ public class DetailsActivity extends BaseActivity implements MovieDetailsView {
         mDialog = new MyanProgressDialog(this);
 
 
-        mPresenter = new MovieDetailPresenterImpl(new MovieDetailsInteractor(this.mService));
+        mPresenter = new MovieDetailPresenterImpl(new MovieDetailsInteractor(this.mService),new MovieInteractor(this.mService));
+
+        mAdapter = new MovieAdapter();
+        recyclerMovie.setHasFixedSize(true);
+        //recyclerMovie.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        recyclerMovie.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerMovie.addItemDecoration(new ItemOffsetDecoration(2));
+        recyclerMovie.setAdapter(mAdapter);
         mPresenter.onAttachView(this);
-        mPresenter.showMovieDetailsById(mmovieId);
+        mPresenter.onUIReady(mmovieId);
 
-
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(PlayMovieTrailer.gePlayMovieTrailerIntent(getApplicationContext(),mmovieId));
+             }
+        });
 
 
 
@@ -142,6 +170,19 @@ public class DetailsActivity extends BaseActivity implements MovieDetailsView {
         tvRevenue.setText(""+movieDetailsInfoModel.getRevenue());
         tvTagline.setText(movieDetailsInfoModel.getTagline());
         tvOverview.setText(movieDetailsInfoModel.getOverview());
+
+    }
+
+    @Override
+    public void showSimilarVideos(List<MovieInfoModel> similarVideoListModel) {
+
+        //page = 1;
+
+        mAdapter.clear();
+        // mAdapter.showLoading();
+        for (MovieInfoModel model: similarVideoListModel) {
+            mAdapter.add(model);
+        }
 
     }
 }

@@ -44,6 +44,11 @@
         android:src="@drawable/img_placeholder">
 
     </ImageView>
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Play"/>
 
         <TextView
             android:id="@+id/tv_title"
@@ -101,6 +106,21 @@
             android:layout_marginLeft="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginBottom="@dimen/margin_normal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MORE LIKE THIS"
+            android:textColor="@color/color_grey_stroke"
+            android:textSize="@dimen/txt_size_ex_large"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/similar_movie_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
     </ScrollView>

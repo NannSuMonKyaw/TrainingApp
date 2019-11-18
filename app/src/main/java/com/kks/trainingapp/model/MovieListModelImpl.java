@@ -3,6 +3,7 @@ package com.kks.trainingapp.model;
 import com.kks.trainingapp.util.ServiceHelper;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -16,6 +17,13 @@ public class MovieListModelImpl implements IMovieListModel {
     public Observable<MovieListModel> getNowShowingMoviesFromApi(ServiceHelper.ApiService service, int page) {
 
         return service.getNowShowingMovies(DEVELOPER_KEY, "en-US", page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<MovieListModel> getSimilarVideosFromApi(ServiceHelper.ApiService service, int movieId, int page) {
+        return service.getSimilarVideos(movieId,DEVELOPER_KEY,page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

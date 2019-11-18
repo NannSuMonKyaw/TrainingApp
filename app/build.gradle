@@ -88,4 +88,5 @@ dependencies {
     // Paralax Recycler
     implementation 'com.yayandroid:ParallaxRecyclerView:1.1'
 
+
 }

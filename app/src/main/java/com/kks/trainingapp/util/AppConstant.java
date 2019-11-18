@@ -11,4 +11,5 @@ public class AppConstant {
 
     public static final String ZG_FONT = "zg";
     public static final String MM3_FONT = "mm3";
+    public static final String YOUTUBE = "https://www.youtube.com/watch?v="; // used to load trailer videos
 }

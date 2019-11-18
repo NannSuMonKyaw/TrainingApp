@@ -21,6 +21,10 @@
 
     <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="card_elevation">5dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="card_radius">15dp</dimen>
+    <dimen name="movie_poster_height">150dp</dimen>
+
 
     <dimen name="btn_height">46dp</dimen>
     <dimen name="margin_bottom_navigation">55dp</dimen>
